@@ -39,12 +39,29 @@ scrollMonitor.create( element, {top: 200, bottom: 50})
 scrollMonitor.create( element, {top: 200})
 ```
 
-```
+```sh
 npm install
 npm test
 curl http://localhost:7357
 ```
 
-```
+```js
+// src/container.js
+var { isOnServer, isInBrowser, eventTypes } = require('./constants');
+var Watcher = require('./watcher');
+
+function getViewportHeight (element) {
+  if (isOnServer) {
+    return 0;
+  }
+  if (element === document.body) {
+    return window.innerHeight || document.documentElement.clientHeight;
+  } else {
+    return element.clientHeight;
+  }
+}
+
+
+
 ```
 
